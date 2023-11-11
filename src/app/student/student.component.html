@@ -1,0 +1,36 @@
+<app-sort (sortSelected)="sortStudents($event)"></app-sort>
+<body><br>
+<button (click)="showStudents()">Show Students</button>
+<h4>Student list is:</h4>
+
+<table *ngIf="students.length>0">
+    <thead>
+        <tr>
+            <th>Roll No</th>
+            <th>Name</th>     
+            <th>Attempts</th>
+            <th>Percentage</th>
+            <th>Subjects Learning</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let s of students">
+            <td>{{s.rollNo}}</td>
+            <td>{{s.name}}</td>
+            <td>{{s.numberOfAttempts}}</td>
+            <td>{{s.percentage}}</td>
+            <td>                
+                <ul *ngFor="let sub of s.subjectsLearning">
+                    <li>{{sub}}</li>
+                </ul>
+            </td>
+            <td>
+                <button class="buttonDelete" (click)="deleteStudent(s.rollNo)">Delete</button>&nbsp;
+                <button class ="buttonUpdate"(click)="updateStudent(s)">Update</button>
+            </td>
+        </tr>
+    </tbody>
+</table><br>
+<span [class] = "colorClass">{{message}}</span>
+</body>
